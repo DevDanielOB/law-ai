@@ -1,0 +1,400 @@
+// Prisma Schema — Law.AI Platform (PostgreSQL 16 + pgvector em Produção / SQLite em Testes)
+// Sincronizado 1:1 com os 18 Módulos (A–R) do Ecossistema Jurídico
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [vector]
+}
+
+// Módulo A & R: Multi-Tenancy e Planos SaaS
+model Tenant {
+  id                 String   @id @default(uuid())
+  name               String
+  slug               String   @unique
+  oabSocietyNumber   String   @map("oab_society_number")
+  planTier           String   @default("PRO") @map("plan_tier")
+  monthlyAiBudgetBrl Float    @default(500.0) @map("monthly_ai_budget_brl")
+  currentAiSpendBrl  Float    @default(0.0) @map("current_ai_spend_brl")
+  settingsJson       String   @default("{}") @map("settings_json")
+  createdAt          DateTime @default(now()) @map("created_at")
+
+  users               User[]
+  services            LegalService[]
+  leads               Lead[]
+  consentRecords      ConsentRecord[]
+  conversations       Conversation[]
+  messages            Message[]
+  opportunities       Opportunity[]
+  followUpTasks       FollowUpTask[]
+  appointments        Appointment[]
+  templates           DocumentTemplate[]
+  contracts           ProposalContract[]
+  approvalRequests    ApprovalRequest[]
+  esignatureEnvelopes EsignatureEnvelope[]
+  paymentCharges      PaymentCharge[]
+  tasks               AgentTask[]
+  processedWebhooks   ProcessedWebhook[]
+  auditLogs           AuditLog[]
+
+  @@map("tenants")
+}
+
+// Módulo B: Usuários, Equipes e Funções RBAC
+model User {
+  id              String   @id @default(uuid())
+  tenantId        String   @map("tenant_id")
+  email           String
+  fullName        String   @map("full_name")
+  role            String   // SUPER_ADMIN, TENANT_ADMIN, LAWYER, PARALEGAL, COMMERCIAL_AGENT, FINANCE
+  oabNumber       String?  @map("oab_number")
+  oabUf           String?  @map("oab_uf")
+  specialtiesJson String   @default("[]") @map("specialties_json")
+  isActive        Boolean  @default(true) @map("is_active")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  tenant          Tenant   @relation(fields: [tenantId], references: [id])
+
+  @@unique([tenantId, email])
+  @@index([tenantId])
+  @@map("users")
+}
+
+// Módulo C: Cadastro de Serviços Jurídicos e Modelos Comerciais
+model LegalService {
+  id                         String   @id @default(uuid())
+  tenantId                   String   @map("tenant_id")
+  name                       String
+  legalArea                  String   @map("legal_area")
+  qualificationQuestionsJson String   @map("qualification_questions_json")
+  baseFeeBrl                 Float    @map("base_fee_brl")
+  successFeePct              Float    @default(0.0) @map("success_fee_pct")
+  requiresLawyerApproval     Boolean  @default(true) @map("requires_lawyer_approval")
+  createdAt                  DateTime @default(now()) @map("created_at")
+
+  tenant                     Tenant   @relation(fields: [tenantId], references: [id])
+
+  @@index([tenantId, legalArea])
+  @@map("legal_services")
+}
+
+// Módulo D & O: Leads, Qualificação e Consentimento LGPD
+model Lead {
+  id                    String   @id @default(uuid())
+  tenantId              String   @map("tenant_id")
+  fullName              String   @map("full_name")
+  phone                 String
+  email                 String?
+  documentCpfCnpj       String?  @map("document_cpf_cnpj")
+  sourceChannel         String   @map("source_channel")
+  legalArea             String?  @map("legal_area")
+  urgencyLevel          String   @default("NORMAL") @map("urgency_level")
+  qualificationScore    Int      @default(0) @map("qualification_score")
+  qualificationDataJson String   @default("{}") @map("qualification_data_json")
+  lgpdConsentStatus     String   @default("GRANTED") @map("lgpd_consent_status")
+  optOut                Boolean  @default(false) @map("opt_out")
+  isAnonymized          Boolean  @default(false) @map("is_anonymized")
+  createdAt             DateTime @default(now()) @map("created_at")
+
+  tenant                Tenant   @relation(fields: [tenantId], references: [id])
+  consentRecords        ConsentRecord[]
+  conversations         Conversation[]
+  opportunities         Opportunity[]
+  followUpTasks         FollowUpTask[]
+  appointments          Appointment[]
+
+  @@index([tenantId, phone])
+  @@map("leads")
+}
+
+model ConsentRecord {
+  id         String   @id @default(uuid())
+  tenantId   String   @map("tenant_id")
+  leadId     String   @map("lead_id")
+  channel    String
+  legalBasis String   @map("legal_basis")
+  purpose    String
+  status     String
+  recordedAt DateTime @default(now()) @map("recorded_at")
+
+  tenant     Tenant   @relation(fields: [tenantId], references: [id])
+  lead       Lead     @relation(fields: [leadId], references: [id])
+
+  @@index([tenantId, leadId])
+  @@map("consent_records")
+}
+
+// Módulo E: Inbox Omnichannel e Histórico de Mensagens
+model Conversation {
+  id             String    @id @default(uuid())
+  tenantId       String    @map("tenant_id")
+  leadId         String    @map("lead_id")
+  channel        String
+  status         String    @default("BOT_ACTIVE")
+  assignedUserId String?   @map("assigned_user_id")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  tenant         Tenant    @relation(fields: [tenantId], references: [id])
+  lead           Lead      @relation(fields: [leadId], references: [id])
+  messages       Message[]
+
+  @@index([tenantId, leadId])
+  @@map("conversations")
+}
+
+model Message {
+  id                       String       @id @default(uuid())
+  tenantId                 String       @map("tenant_id")
+  conversationId           String       @map("conversation_id")
+  direction                String       // INBOUND, OUTBOUND
+  senderType               String       @map("sender_type") // LEAD, BOT, LAWYER
+  content                  String
+  promptInjectionFlagged   Boolean      @default(false) @map("prompt_injection_flagged")
+  syncedToCrm              Boolean      @default(false) @map("synced_to_crm")
+  createdAt                DateTime     @default(now()) @map("created_at")
+
+  tenant                   Tenant       @relation(fields: [tenantId], references: [id])
+  conversation             Conversation @relation(fields: [conversationId], references: [id])
+
+  @@index([tenantId, conversationId])
+  @@map("messages")
+}
+
+// Módulo D: Oportunidades e Pipeline Comercial Jurídico
+model Opportunity {
+  id                    String   @id @default(uuid())
+  tenantId              String   @map("tenant_id")
+  leadId                String   @map("lead_id")
+  serviceId             String?  @map("service_id")
+  stage                 String   @default("NEW") // NEW, QUALIFIED, AWAITING_DOCUMENTS, DOCUMENTS_RECEIVED, MEETING_SCHEDULED, GATE_OAB, WON, LOST
+  priority              String   @default("MEDIUM")
+  estimatedValueBrl     Float    @default(0.0) @map("estimated_value_brl")
+  assignedLawyerId      String?  @map("assigned_lawyer_id")
+  pendingDocumentsJson  String   @default("[]") @map("pending_documents_json")
+  crmSituationSummary   String   @default("") @map("crm_situation_summary")
+  createdAt             DateTime @default(now()) @map("created_at")
+  updatedAt             DateTime @updatedAt @map("updated_at")
+
+  tenant                Tenant   @relation(fields: [tenantId], references: [id])
+  lead                  Lead     @relation(fields: [leadId], references: [id])
+
+  followUpTasks         FollowUpTask[]
+  appointments          Appointment[]
+  contracts             ProposalContract[]
+
+  @@index([tenantId, stage])
+  @@map("opportunities")
+}
+
+// Módulo G: Follow-up Automático de Documentação e Reengajamento
+model FollowUpTask {
+  id                 String      @id @default(uuid())
+  tenantId           String      @map("tenant_id")
+  opportunityId      String      @map("opportunity_id")
+  leadId             String      @map("lead_id")
+  reason             String
+  pendingItemsJson   String      @default("[]") @map("pending_items_json")
+  scheduledForIso    String      @map("scheduled_for_iso")
+  triggerMode        String      @map("trigger_mode")
+  status             String      @default("SCHEDULED") // SCHEDULED, EXECUTED, CANCELLED, COMPLETED_DOCS_RECEIVED
+  autoMessagePreview String      @map("auto_message_preview")
+  createdAt          DateTime    @default(now()) @map("created_at")
+  updatedAt          DateTime    @updatedAt @map("updated_at")
+
+  tenant             Tenant      @relation(fields: [tenantId], references: [id])
+  opportunity        Opportunity @relation(fields: [opportunityId], references: [id])
+  lead               Lead        @relation(fields: [leadId], references: [id])
+
+  @@index([tenantId, status])
+  @@map("follow_up_tasks")
+}
+
+// Módulo N & H: Agenda e Compromissos Google Meet
+model Appointment {
+  id               String      @id @default(uuid())
+  tenantId         String      @map("tenant_id")
+  opportunityId    String      @map("opportunity_id")
+  leadId           String      @map("lead_id")
+  lawyerUserId     String      @map("lawyer_user_id")
+  scheduledSlotIso String      @map("scheduled_slot_iso")
+  meetingLink      String      @map("meeting_link")
+  status           String      @default("CONFIRMED")
+  createdAt        DateTime    @default(now()) @map("created_at")
+
+  tenant           Tenant      @relation(fields: [tenantId], references: [id])
+  opportunity      Opportunity @relation(fields: [opportunityId], references: [id])
+  lead             Lead        @relation(fields: [leadId], references: [id])
+
+  @@index([tenantId, scheduledSlotIso])
+  @@map("appointments")
+}
+
+// Módulo I: Biblioteca de Documentos e Modelos Contratuais
+model DocumentTemplate {
+  id           String   @id @default(uuid())
+  tenantId     String   @map("tenant_id")
+  name         String
+  legalArea    String   @map("legal_area")
+  bodyTemplate String   @map("body_template")
+  version      Int      @default(1)
+  isApproved   Boolean  @default(true) @map("is_approved")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  tenant       Tenant   @relation(fields: [tenantId], references: [id])
+
+  @@index([tenantId])
+  @@map("document_templates")
+}
+
+// Módulo J & K: Propostas, Minutas e Aprovação Humana OAB
+model ProposalContract {
+  id               String    @id @default(uuid())
+  tenantId         String    @map("tenant_id")
+  opportunityId    String    @map("opportunity_id")
+  templateId       String    @map("template_id")
+  renderedContent  String    @map("rendered_content")
+  contentSha256    String    @map("content_sha256")
+  feeValueBrl      Float     @map("fee_value_brl")
+  status           String    @default("AWAITING_APPROVAL") // AWAITING_APPROVAL, APPROVED, REJECTED, SENT_FOR_SIGNATURE, SIGNED
+  approvedByUserId String?   @map("approved_by_user_id")
+  approvedAt       DateTime? @map("approved_at")
+  rejectionReason  String?   @map("rejection_reason")
+  createdAt        DateTime  @default(now()) @map("created_at")
+
+  tenant           Tenant    @relation(fields: [tenantId], references: [id])
+  opportunity      Opportunity @relation(fields: [opportunityId], references: [id])
+
+  approvalRequests    ApprovalRequest[]
+  esignatureEnvelopes EsignatureEnvelope[]
+  paymentCharges      PaymentCharge[]
+
+  @@index([tenantId, opportunityId])
+  @@map("proposals_and_contracts")
+}
+
+model ApprovalRequest {
+  id               String    @id @default(uuid())
+  tenantId         String    @map("tenant_id")
+  contractId       String    @map("contract_id")
+  opportunityId    String    @map("opportunity_id")
+  actionType       String    @map("action_type")
+  requestedByActor String    @map("requested_by_actor")
+  status           String    @default("PENDING") // PENDING, APPROVED, REJECTED
+  decidedByUserId  String?   @map("decided_by_user_id")
+  decisionNotes    String?   @map("decision_notes")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  decidedAt        DateTime? @map("decided_at")
+
+  tenant           Tenant           @relation(fields: [tenantId], references: [id])
+  contract         ProposalContract @relation(fields: [contractId], references: [id])
+
+  @@index([tenantId, contractId])
+  @@map("approval_requests")
+}
+
+// Módulo L: Assinatura Eletrônica (ZapSign / Clicksign)
+model EsignatureEnvelope {
+  id            String           @id @default(uuid())
+  tenantId      String           @map("tenant_id")
+  contractId    String           @map("contract_id")
+  opportunityId String           @map("opportunity_id")
+  provider      String
+  externalId    String           @unique @map("external_id")
+  signerUrl     String           @map("signer_url")
+  status        String           @default("SENT") // SENT, VIEWED, SIGNED, REJECTED
+  executionMode String           @map("execution_mode") // SANDBOX_SIMULATED, LIVE_CREDENTIALED
+  signedAt      DateTime?        @map("signed_at")
+  createdAt     DateTime         @default(now()) @map("created_at")
+
+  tenant        Tenant           @relation(fields: [tenantId], references: [id])
+  contract      ProposalContract @relation(fields: [contractId], references: [id])
+
+  @@index([tenantId, externalId])
+  @@map("esignature_envelopes")
+}
+
+// Módulo M: Cobranças e Pagamentos (Asaas API v3)
+model PaymentCharge {
+  id            String           @id @default(uuid())
+  tenantId      String           @map("tenant_id")
+  contractId    String           @map("contract_id")
+  opportunityId String           @map("opportunity_id")
+  provider      String
+  externalId    String           @unique @map("external_id")
+  paymentMethod String           @map("payment_method")
+  amountBrl     Float            @map("amount_brl")
+  pixCopyPaste  String?          @map("pix_copy_paste")
+  invoiceUrl    String           @map("invoice_url")
+  status        String           @default("PENDING") // PENDING, CONFIRMED, OVERDUE, REFUNDED
+  executionMode String           @map("execution_mode")
+  paidAt        DateTime?        @map("paid_at")
+  createdAt     DateTime         @default(now()) @map("created_at")
+
+  tenant        Tenant           @relation(fields: [tenantId], references: [id])
+  contract      ProposalContract @relation(fields: [contractId], references: [id])
+
+  @@index([tenantId, externalId])
+  @@map("payment_charges")
+}
+
+// Módulo Q & Seção 8: Tarefas de Agentes de IA
+model AgentTask {
+  id                    String   @id @default(uuid())
+  tenantId              String   @map("tenant_id")
+  opportunityId         String?  @map("opportunity_id")
+  agentType             String   @map("agent_type")
+  objective             String
+  contextJson           String   @map("context_json")
+  allowedToolsJson      String   @map("allowed_tools_json")
+  timeoutSeconds        Int      @default(60) @map("timeout_seconds")
+  maxBudgetBrl          Float    @default(2.0) @map("max_budget_brl")
+  consumedBudgetBrl     Float    @default(0.0) @map("consumed_budget_brl")
+  state                 String   @default("PENDING") // PENDING, RUNNING, AWAITING_APPROVAL, COMPLETED, FAILED
+  resultJson            String   @default("{}") @map("result_json")
+  evidenceLogsJson      String   @default("[]") @map("evidence_logs_json")
+  successCriteria       String   @map("success_criteria")
+  requiresHumanApproval Boolean  @default(false) @map("requires_human_approval")
+  createdAt             DateTime @default(now()) @map("created_at")
+  updatedAt             DateTime @updatedAt @map("updated_at")
+
+  tenant                Tenant   @relation(fields: [tenantId], references: [id])
+
+  @@index([tenantId, state])
+  @@map("agent_tasks")
+}
+
+// Controle de Idempotência de Webhooks
+model ProcessedWebhook {
+  idempotencyKey String   @id @map("idempotency_key")
+  tenantId       String   @map("tenant_id")
+  provider       String
+  processedAt    DateTime @default(now()) @map("processed_at")
+
+  tenant         Tenant   @relation(fields: [tenantId], references: [id])
+
+  @@map("processed_webhooks")
+}
+
+// Módulo O: Trilha de Auditoria Imutável (Append-Only)
+model AuditLog {
+  id             String   @id @default(uuid())
+  tenantId       String   @map("tenant_id")
+  actorType      String   @map("actor_type")
+  actorId        String   @map("actor_id")
+  action         String
+  resourceType   String   @map("resource_type")
+  resourceId     String   @map("resource_id")
+  payloadSummary String   @map("payload_summary")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  tenant         Tenant   @relation(fields: [tenantId], references: [id])
+
+  @@index([tenantId, createdAt])
+  @@map("audit_logs")
+}

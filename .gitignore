@@ -1,0 +1,10 @@
+node_modules/
+dist-test/
+.agents/
+.env
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+.vercel/
+.DS_Store

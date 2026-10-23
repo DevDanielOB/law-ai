@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardoso & Associados Advocacia — Atendimento Especializado</title>
+  <meta name="description" content="Atendimento jurídico especializado e ágil guiado por IA e supervisionado por Dr. Fabricio Cardoso Gomes (OAB/GO 41.209). Trabalhista, Previdenciário, Cível, Família, Empresarial e Tributário.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-page: #F8FAFC;
+      --bg-surface: #FFFFFF;
+      --navy-900: #0F1E36;
+      --navy-800: #162B4D;
+      --navy-700: #1E3A8A;
+      --blue-royal: #1A56DB;
+      --blue-hover: #1E40AF;
+      --blue-subtle: #EFF6FF;
+      --turquoise-600: #0E7490;
+      --turquoise-50: #ECFEFF;
+      --amber-600: #D97706;
+      --amber-50: #FFFBEB;
+      --green-600: #059669;
+      --green-50: #ECFDF5;
+      --slate-900: #0F172A;
+      --slate-800: #1E293B;
+      --slate-600: #475569;
+      --slate-500: #64748B;
+      --slate-400: #94A3B8;
+      --slate-300: #CBD5E1;
+      --slate-200: #E2E8F0;
+      --slate-100: #F1F5F9;
+      --slate-50: #F8FAFC;
+      --border-color: #E2E8F0;
+      --shadow-sm: 0 1px 2px 0 rgba(15, 30, 54, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(15, 30, 54, 0.08), 0 2px 4px -2px rgba(15, 30, 54, 0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(15, 30, 54, 0.1), 0 8px 10px -6px rgba(15, 30, 54, 0.05);
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Cinzel', Georgia, serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--slate-900);
+      font-family: var(--font-main);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Bar Institucional */
+    .top-institutional-bar {
+      background: var(--navy-900);
+      color: #E2E8F0;
+      font-size: 0.8125rem;
+      padding: 8px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .top-bar-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .oab-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      color: #93C5FD;
+    }
+    .oab-tag span {
+      color: #FFFFFF;
+    }
+    .trust-badges {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      color: #CBD5E1;
+    }
+
+    /* Header Principal */
+    header.site-header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-monogram {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--navy-900), var(--blue-royal));
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 1.25rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(26, 86, 219, 0.25);
+    }
+    .brand-text h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+    .brand-text p {
+      font-size: 0.775rem;
+      color: var(--slate-500);
+      font-weight: 500;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .security-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--turquoise-50);
+      color: var(--turquoise-600);
+      border: 1px solid #CCFBF1;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      font-size: 0.775rem;
+      font-weight: 600;
+    }
+
+    /* Main Container */
+    main.main-content {
+      flex: 1;
+      max-width: 900px;
+      width: 100%;
+      margin: 32px auto 48px;
+      padding: 0 20px;
+    }
+
+    /* Stepper Bar */
+    .stepper-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--slate-400);
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    .step-item.active {
+      color: var(--blue-royal);
+    }
+    .step-item.completed {
+      color: var(--green-600);
+    }
+    .step-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--slate-100);
+      color: var(--slate-600);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+    .step-item.active .step-circle {
+      background: var(--blue-royal);
+      color: #FFFFFF;
+      box-shadow: 0 0 0 4px rgba(26, 86, 219, 0.15);
+    }
+    .step-item.completed .step-circle {
+      background: var(--green-600);
+      color: #FFFFFF;
+    }
+    .step-divider {
+      flex: 1;
+      height: 2px;
+      background: var(--slate-200);
+      margin: 0 12px;
+    }
+
+    /* Card Principal */
+    .intake-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+    .intake-header {
+      padding: 28px 32px 20px;
+      border-bottom: 1px solid var(--slate-100);
+      background: linear-gradient(180deg, #FFFFFF, var(--slate-50));
+    }
+    .intake-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--blue-royal);
+      background: var(--blue-subtle);
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .intake-header h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--navy-900);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .intake-header p {
+      font-size: 0.925rem;
+      color: var(--slate-600);
+      line-height: 1.5;
+    }
+
+    .intake-body {
+      padding: 32px;
+    }
+
+    /* Formulários e Campos */
+    .form-group {
+      margin-bottom: 22px;
+    }
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--slate-800);
+      margin-bottom: 6px;
+    }
+    .form-label .required {
+      color: #DC2626;
+      margin-left: 2px;
+    }
+    .form-hint {
+      display: block;
+      font-size: 0.775rem;
+      color: var(--slate-500);
+      margin-top: 4px;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: var(--slate-900);
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      outline: none;
+      transition: all 0.15s ease;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--blue-royal);
+      box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.15);
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* Grid de Áreas Jurídicas */
+    .areas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .area-card-radio {
+      position: relative;
+      border: 1.5px solid var(--border-color);
+      border-radius: 10px;
+      padding: 14px 16px;
+      cursor: pointer;
+      background: #FFFFFF;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .area-card-radio:hover {
+      border-color: var(--blue-royal);
+      background: var(--blue-subtle);
+    }
+    .area-card-radio.selected {
+      border-color: var(--blue-royal);
+      background: #F0F6FF;
+      box-shadow: 0 0 0 2px rgba(26, 86, 219, 0.2);
+    }
+    .area-card-title {
+      font-size: 0.925rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .area-card-desc {
+      font-size: 0.775rem;
+      color: var(--slate-500);
+      line-height: 1.35;
+    }
+
+    /* LGPD Box */
+    .lgpd-consent-box {
+      background: var(--slate-50);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 16px;
+      margin: 24px 0 28px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .lgpd-checkbox {
+      margin-top: 3px;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--blue-royal);
+      cursor: pointer;
+    }
+    .lgpd-text {
+      font-size: 0.8125rem;
+      color: var(--slate-600);
+      line-height: 1.45;
+    }
+    .lgpd-text strong {
+      color: var(--slate-800);
+    }
+
+    /* Botões */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--blue-royal);
+      color: #FFFFFF;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(26, 86, 219, 0.25);
+      transition: all 0.2s ease;
+    }
+    .btn-primary:hover {
+      background: var(--blue-hover);
+      box-shadow: 0 6px 16px rgba(26, 86, 219, 0.35);
+      transform: translateY(-1px);
+    }
+    .btn-primary:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #FFFFFF;
+      color: var(--slate-700);
+      font-size: 0.925rem;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.15s ease;
+    }
+    .btn-secondary:hover {
+      background: var(--slate-100);
+      color: var(--slate-900);
+    }
+
+    /* Componente de Upload de Documentos */
+    .upload-zone {
+      border: 2px dashed var(--slate-300);
+      background: var(--slate-50);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: 16px;
+    }
+    .upload-zone:hover, .upload-zone.dragover {
+      border-color: var(--blue-royal);
+      background: var(--blue-subtle);
+    }
+    .upload-icon {
+      font-size: 2rem;
+      color: var(--blue-royal);
+      margin-bottom: 8px;
+    }
+    .upload-zone h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--slate-800);
+    }
+    .upload-zone p {
+      font-size: 0.8125rem;
+      color: var(--slate-500);
+      margin-top: 4px;
+    }
+
+    /* Checklist de Documentos */
+    .doc-checklist {
+      list-style: none;
+      margin: 16px 0;
+      display: grid;
+      gap: 8px;
+    }
+    .doc-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 0.875rem;
+    }
+    .doc-item.received {
+      border-color: #A7F3D0;
+      background: var(--green-50);
+      color: var(--green-600);
+      font-weight: 600;
+    }
+    .doc-item.pending {
+      border-color: #FDE68A;
+      background: var(--amber-50);
+      color: var(--amber-600);
+    }
+    .doc-status-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 9999px;
+    }
+
+    /* Tela de Confirmação & Assinatura (Etapa 3) */
+    .confirmation-banner {
+      background: linear-gradient(135deg, #065F46, #047857);
+      color: #FFFFFF;
+      padding: 28px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.25);
+    }
+    .confirmation-banner h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .protocol-tag {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-top: 8px;
+    }
+
+    .status-summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 640px) {
+      .status-summary-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .info-card {
+      background: var(--slate-50);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .info-card-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--slate-500);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .info-card-value {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+    .info-card-sub {
+      font-size: 0.8125rem;
+      color: var(--slate-600);
+      margin-top: 2px;
+    }
+
+    .signature-action-box {
+      background: var(--blue-subtle);
+      border: 1.5px solid #BFDBFE;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .signature-action-box h4 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--navy-900);
+      margin-bottom: 6px;
+    }
+    .signature-action-box p {
+      font-size: 0.875rem;
+      color: var(--slate-600);
+      margin-bottom: 18px;
+    }
+    .btn-sign {
+      background: #10B981;
+      color: #FFFFFF;
+      font-size: 1.1rem;
+      font-weight: 800;
+      padding: 16px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+    .btn-sign:hover {
+      background: #059669;
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45);
+      transform: translateY(-1px);
+    }
+
+    /* Footer Institucional OAB */
+    footer.site-footer {
+      background: var(--navy-900);
+      color: #CBD5E1;
+      padding: 36px 20px 24px;
+      margin-top: auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.8125rem;
+    }
+    .footer-container {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .footer-title {
+      color: #FFFFFF;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .footer-disclaimer {
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 3px solid #60A5FA;
+      padding: 12px 14px;
+      border-radius: 4px;
+      margin-top: 16px;
+      line-height: 1.45;
+      font-size: 0.775rem;
+      color: #94A3B8;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 16px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #64748B;
+    }
+
+    /* Utilidades */
+    .hidden {
+      display: none !important;
+    }
+    .spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #FFFFFF;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra Superior de Conformidade e OAB -->
+  <aside class="top-institutional-bar">
+    <div class="top-bar-inner">
+      <div class="oab-tag">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 10h2v4h-2zm0 6h2v2h-2z"/></svg>
+        <span>Cardoso & Associados Advocacia</span> • Inscrição OAB/GO 4.512
+      </div>
+      <div class="trust-badges">
+        <span>Dr. Fabricio Cardoso Gomes — OAB/GO 41.209</span>
+        <span>•</span>
+        <span>Atendimento em Conformidade com a LGPD & Provimento 205/2021 OAB</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Cabeçalho -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="/atendimento" class="brand-block">
+        <div class="brand-monogram">CA</div>
+        <div class="brand-text">
+          <h1>Cardoso & Associados</h1>
+          <p>Advocacia & Consultoria Jurídica Especializada</p>
+        </div>
+      </a>
+      <div class="header-right">
+        <div class="security-chip">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Cofre Criptográfico SHA-256
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Conteúdo Central -->
+  <main class="main-content">
+
+    <!-- Stepper de Progresso -->
+    <nav class="stepper-nav" aria-label="Progresso do Atendimento">
+      <div class="step-item active" id="stepper-step-1">
+        <div class="step-circle">1</div>
+        <span>Solicitação Inicial</span>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step-item" id="stepper-step-2">
+        <div class="step-circle">2</div>
+        <span>Triagem & Documentos</span>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step-item" id="stepper-step-3">
+        <div class="step-circle">3</div>
+        <span>Contrato & Assinatura</span>
+      </div>
+    </nav>
+
+    <!-- ============================================================= -->
+    <!-- ETAPA 1: SOLICITAÇÃO INICIAL & CAPTAÇÃO DE TRÁFEGO PAGO -->
+    <!-- ============================================================= -->
+    <section class="intake-card" id="step-1-card">
+      <div class="intake-header">
+        <div class="intake-badge">Triagem Especializada Online</div>
+        <h2>Solicite seu Atendimento Jurídico Especializado</h2>
+        <p>Preencha os dados abaixo para direcionarmos seu caso imediatamente ao advogado especialista da área correspondente no escritório Cardoso & Associados.</p>
+      </div>
+
+      <div class="intake-body">
+        <form id="step-1-form">
+          
+          <!-- Nome Completo -->
+          <div class="form-group">
+            <label class="form-label" for="full_name">
+              Nome Completo do Titular <span class="required">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="full_name" 
+              name="full_name" 
+              class="form-input" 
+              placeholder="Digite seu nome e sobrenome" 
+              required
+              autocomplete="name"
+            >
+            <span class="form-hint">Necessário para qualificação formal e emissão de procuração.</span>
+          </div>
+
+          <!-- WhatsApp com Máscara Brasileira -->
+          <div class="form-group">
+            <label class="form-label" for="whatsapp_phone">
+              WhatsApp para Contato com DDD <span class="required">*</span>
+            </label>
+            <input 
+              type="tel" 
+              id="whatsapp_phone" 
+              name="whatsapp_phone" 
+              class="form-input" 
+              placeholder="(62) 99888-7766" 
+              required
+              maxlength="15"
+              autocomplete="tel"
+            >
+            <span class="form-hint">Enviaremos a confirmação técnica e o link de assinatura diretamente no seu WhatsApp.</span>
+          </div>
+
+          <!-- Área de Interesse Jurídico -->
+          <div class="form-group">
+            <label class="form-label">
+              Área de Interesse do Serviço Jurídico <span class="required">*</span>
+            </label>
+            <div class="areas-grid" id="areas-grid-container">
+              
+              <div class="area-card-radio selected" data-area="TRABALHISTA">
+                <div class="area-card-title">
+                  <span>Direito Trabalhista</span>
+                  <input type="radio" name="legal_area" value="TRABALHISTA" checked style="accent-color: var(--blue-royal);">
+                </div>
+                <div class="area-card-desc">Rescisão, Horas Extras, Vínculo Empregatício, FGTS, Desvio de Função, Acidente.</div>
+              </div>
+
+              <div class="area-card-radio" data-area="PREVIDENCIARIO">
+                <div class="area-card-title">
+                  <span>Previdenciário (INSS)</span>
+                  <input type="radio" name="legal_area" value="PREVIDENCIARIO" style="accent-color: var(--blue-royal);">
+                </div>
+                <div class="area-card-desc">Aposentadoria, Auxílio por Incapacidade, BPC/LOAS, Pensão por Morte, Revisão INSS.</div>
+              </div>
+
+              <div class="area-card-radio" data-area="CIVEL_CONSUMIDOR">
+                <div class="area-card-title">
+                  <span>Cível & Consumidor</span>
+                  <input type="radio" name="legal_area" value="CIVEL_CONSUMIDOR" style="accent-color: var(--blue-royal);">
+                </div>
+                <div class="area-card-desc">Indenizações, Danos Morais, Negativação Indevida, Plano de Saúde, Fraudes Bancárias.</div>
+              </div>
+
+              <div class="area-card-radio" data-area="FAMILIA_SUCESSOES">
+                <div class="area-card-title">
+                  <span>Família & Sucessões</span>
+                  <input type="radio" name="legal_area" value="FAMILIA_SUCESSOES" style="accent-color: var(--blue-royal);">
+                </div>
+                <div class="area-card-desc">Divórcio Consensual/Litigioso, Pensão Alimentícia, Guarda de Filhos, Inventário.</div>
+              </div>
+
+              <div class="area-card-radio" data-area="EMPRESARIAL">
+                <div class="area-card-title">
+                  <span>Direito Empresarial</span>
+                  <input type="radio" name="legal_area" value="EMPRESARIAL" style="accent-color: var(--blue-royal);">
+                </div>
+                <div class="area-card-desc">Contratos Societários, Cobrança Judicial, Recuperação de Crédito, Defesa Trabalhista.</div>
+              </div>
+
+              <div class="area-card-radio" data-area="TRIBUTARIO">
+                <div class="area-card-title">
+                  <span>Direito Tributário</span>
+                  <input type="radio" name="legal_area" value="TRIBUTARIO" style="accent-color: var(--blue-royal);">
+                </div>
+                <div class="area-card-desc">Defesa em Execução Fiscal, Notificação CDA, Recuperação de Tributos, Planejamento.</div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Consentimento LGPD -->
+          <div class="lgpd-consent-box">
+            <input type="checkbox" id="lgpd_consent" name="lgpd_consent" class="lgpd-checkbox" required checked>
+            <label for="lgpd_consent" class="lgpd-text">
+              Autorizo o escritório <strong>Cardoso & Associados Advocacia (OAB/GO 4.512)</strong> a coletar e tratar meus dados pessoais informados para fins exclusivos de triagem jurídica e contato comercial através do WhatsApp, conforme os <strong>Artigos 7º, I e V da Lei Geral de Proteção de Dados (Lei 13.709/2018)</strong> e o <strong>Provimento 205/2021 da OAB</strong>.
+            </label>
+          </div>
+
+          <!-- CTA Submissão Etapa 1 -->
+          <button type="submit" class="btn-primary" id="btn-submit-step-1">
+            <span id="btn-step-1-text">Iniciar Atendimento Especializado</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- ETAPA 2: COLETA GUIADA POR IA + UPLOAD DE DOCUMENTOS -->
+    <!-- ============================================================= -->
+    <section class="intake-card hidden" id="step-2-card">
+      <div class="intake-header">
+        <div class="intake-badge" id="step-2-area-badge">Direito Trabalhista</div>
+        <h2>Relato do Caso e Documentação Necessária</h2>
+        <p>Nossa IA estruturou as perguntas essenciais para a área selecionada. Preencha os campos abaixo e anexe fotos ou PDFs dos documentos para acelerar a minuta do seu contrato.</p>
+      </div>
+
+      <div class="intake-body">
+        <form id="step-2-form">
+
+          <!-- CPF do Titular -->
+          <div class="form-group">
+            <label class="form-label" for="document_cpf">
+              CPF do Titular <span class="required">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="document_cpf" 
+              name="document_cpf" 
+              class="form-input" 
+              placeholder="000.000.000-00" 
+              required
+              maxlength="14"
+            >
+            <span class="form-hint">Obrigatório para qualificação no contrato de honorários e procuração ad judicia.</span>
+          </div>
+
+          <!-- Perguntas Dinâmicas da Área -->
+          <div id="dynamic-questions-container">
+            <!-- Renderizado dinamicamente pelo JS -->
+          </div>
+
+          <!-- Relato Livre do Caso -->
+          <div class="form-group">
+            <label class="form-label" for="case_narrative">
+              Resumo / Relato Livre da Situação
+            </label>
+            <textarea 
+              id="case_narrative" 
+              name="case_narrative" 
+              class="form-textarea" 
+              placeholder="Conte detalhadamente o que aconteceu, nome da empresa reclamada ou instituição, datas e valores..."
+            ></textarea>
+            <span class="form-hint">A IA identificará as entidades e os prazos legais com base no seu relato.</span>
+          </div>
+
+          <!-- Urgência / Medida Liminar -->
+          <div class="form-group" style="margin-top: 10px;">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 0.875rem; font-weight: 600; color: var(--navy-900); cursor: pointer;">
+              <input type="checkbox" id="urgency_liminar" name="urgency_liminar" style="width: 18px; height: 18px; accent-color: var(--amber-600);">
+              Existe urgência crítica ou risco de prazo fatal (bloqueio de contas, demissão iminente, despejo ou necessidade de liminar)?
+            </label>
+          </div>
+
+          <!-- Componente de Upload de Documentos -->
+          <div class="form-group" style="margin-top: 24px;">
+            <label class="form-label">
+              Documentos Obrigatórios para a Análise Técnica
+            </label>
+
+            <!-- Notificação de OCR da IA -->
+            <div id="ocr-notification-box" style="display: none; margin-bottom: 12px; padding: 10px 14px; background: #ECFDF5; border: 1px solid #10B981; border-radius: 8px; color: #065F46; font-size: 0.875rem; font-weight: 600; display: flex; align-items: center; gap: 8px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span id="ocr-notification-text">CPF identificado e preenchido pela IA</span>
+            </div>
+            
+            <div class="upload-zone" id="drop-zone">
+              <input type="file" id="file-input" multiple accept="image/*,application/pdf" style="display: none;">
+              <div class="upload-icon">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              </div>
+              <h4>Clique para selecionar arquivos ou arraste fotos/PDFs aqui</h4>
+              <p>Envie fotos da câmera ou PDFs. A IA (Gemini Vision) identifica visualmente cada tipo de documento, extrai os dados via OCR e armazena com hash SHA-256 no cofre criptográfico.</p>
+            </div>
+
+            <!-- Indicador de Análise em Tempo Real pela IA -->
+            <div id="ai-analyzing-indicator" style="display: none; margin-top: 10px; padding: 10px 14px; background: #EFF6FF; border: 1px solid #3B82F6; border-radius: 8px; color: #1E40AF; font-size: 0.875rem; font-weight: 600; align-items: center; gap: 8px;">
+              <div class="spinner" style="border-color: #3B82F6; border-top-color: transparent;"></div>
+              <span id="ai-analyzing-text">IA analisando documento com Gemini Vision e OCR...</span>
+            </div>
+
+            <!-- Banner de Contrato Pronto para Assinatura Imediata -->
+            <div id="contract-ready-banner" style="display: none; margin-top: 16px; padding: 16px; background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%); border: 1.5px solid #059669; border-radius: 10px; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.15);">
+              <div style="display: flex; align-items: flex-start; gap: 12px;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <div style="flex: 1;">
+                  <div style="font-size: 1rem; font-weight: 700; color: #065F46;">Todos os documentos foram analisados e aprovados pela IA!</div>
+                  <p style="font-size: 0.875rem; color: #047857; margin: 4px 0 12px 0;">
+                    Sua documentação atende 100% dos requisitos técnicos. O Contrato de Honorários e a Procuração já foram gerados e estão prontos para fechamento e assinatura digital com plena validade jurídica.
+                  </p>
+                  <a href="#" target="_blank" class="btn-sign" id="btn-quick-sign" style="display: inline-flex; width: auto; padding: 8px 18px; font-size: 0.875rem; background: #059669;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    Assinar Contrato Agora pelo Celular (ZapSign)
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lista / Checklist com Status -->
+            <ul class="doc-checklist" id="checklist-ui">
+              <!-- Populado dinamicamente -->
+            </ul>
+
+            <!-- Opção de envio alternativo via WhatsApp -->
+            <div style="text-align: center; margin-top: 14px;">
+              <button type="button" class="btn-secondary" id="btn-skip-docs">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                Prefiro enviar os documentos pelo WhatsApp agora
+              </button>
+            </div>
+          </div>
+
+          <!-- CTA Finalizar Etapa 2 -->
+          <button type="submit" class="btn-primary" id="btn-submit-step-2" style="margin-top: 24px;">
+            <span id="btn-step-2-text">Finalizar Triagem e Gerar Atendimento</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- ETAPA 3: CONFIRMAÇÃO, WHATSAPP & ASSINATURA ELETRÔNICA -->
+    <!-- ============================================================= -->
+    <section class="intake-card hidden" id="step-3-card">
+      <div class="intake-body">
+        
+        <div class="confirmation-banner">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-bottom: 8px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <h3>Atendimento Registrado com Sucesso!</h3>
+          <p>Seus dados foram analisados pela IA e vinculados diretamente ao sistema do escritório.</p>
+          <div class="protocol-tag" id="confirmation-protocol">LAW-2026-XXXXXX</div>
+        </div>
+
+        <div class="status-summary-grid">
+          <div class="info-card">
+            <div class="info-card-label">Advogado Especialista Titular</div>
+            <div class="info-card-value" id="summary-lawyer-name">Dr. Fabricio Cardoso Gomes</div>
+            <div class="info-card-sub" id="summary-lawyer-oab">OAB/GO 41.209</div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-label">Área & Prioridade</div>
+            <div class="info-card-value" id="summary-legal-area">Direito Trabalhista</div>
+            <div class="info-card-sub" id="summary-priority">Prioridade Normal • Qualificação 90%</div>
+          </div>
+        </div>
+
+        <!-- WhatsApp Outreach Alert -->
+        <div class="info-card" style="border-left: 4px solid var(--green-600); background: var(--green-50); margin-bottom: 24px;">
+          <div style="display: flex; gap: 12px; align-items: flex-start;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--green-600)"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+            <div>
+              <div style="font-weight: 700; color: #065F46; font-size: 0.95rem;">Mensagem Enviada no seu WhatsApp Oficial!</div>
+              <p style="font-size: 0.8125rem; color: #047857; margin-top: 2px;" id="whatsapp-confirmation-text">
+                O assistente jurídico do Dr. Fabricio Cardoso já enviou uma mensagem de confirmação para o seu número.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Box de Assinatura do Contrato de Honorários -->
+        <div class="signature-action-box" id="signature-action-container">
+          <h4>Seu Contrato de Honorários e Procuração Digital</h4>
+          <p>A minuta foi gerada com base no modelo institucional aprovado pelo Dr. Fabricio Cardoso Gomes. Clique no botão abaixo para assinar digitalmente pelo celular com plena validade jurídica (ICP-Brasil via ZapSign):</p>
+          <a href="#" target="_blank" class="btn-sign" id="btn-zapsign-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            Assinar Contrato Digitalmente Agora
+          </a>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+          <a href="/atendimento" class="btn-secondary" style="display: inline-flex; width: auto;">
+            Iniciar Nova Consulta
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Rodapé Institucional com Resguardo Ético OAB -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title">Cardoso & Associados Advocacia</div>
+          <p>Sociedade de Advogados inscrita na OAB/GO sob o nº 4.512.</p>
+          <p>Advogado Titular: Dr. Fabricio Cardoso Gomes — OAB/GO 41.209.</p>
+          <p style="margin-top: 8px;">Edifício Empresarial Goiás, Av. República do Líbano, Setor Oeste, Goiânia - GO.</p>
+        </div>
+
+        <div>
+          <div class="footer-title">Áreas de Atuação</div>
+          <p>• Direito do Trabalho & Acidentário</p>
+          <p>• Direito Previdenciário & INSS</p>
+          <p>• Cível, Consumidor & Saúde</p>
+          <p>• Família & Planejamento Sucessório</p>
+          <p>• Direito Empresarial & Tributário</p>
+        </div>
+
+        <div>
+          <div class="footer-title">Segurança & Privacidade</div>
+          <p>• Tratamento de Dados LGPD Art. 7º</p>
+          <p>• Cofre Criptográfico SHA-256</p>
+          <p>• Assinatura Eletrônica ZapSign</p>
+          <p>• Sigilo Profissional Estatuto OAB</p>
+        </div>
+      </div>
+
+      <div class="footer-disclaimer">
+        <strong>Conformidade Ética com o Provimento 205/2021 do Conselho Federal da OAB:</strong>
+        Este ambiente digital possui caráter meramente informativo e pré-contratual. A plataforma utiliza inteligência artificial avançada como suporte operacional e triagem sob supervisão estrita e direta de advogados regularmente inscritos nos quadros da Ordem dos Advogados do Brasil. As análises preliminares não constituem aconselhamento jurídico definitivo nem configuram garantia ou promessa de resultado processual.
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 Cardoso & Associados Advocacia. Todos os direitos reservados. Plataforma Law.AI — Autonomous Legal Business Platform.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lógica JavaScript Integrada -->
+  <script>
+    (function() {
+      // Estado da Aplicação
+      const state = {
+        leadId: null,
+        opportunityId: null,
+        protocolNumber: null,
+        selectedArea: 'TRABALHISTA',
+        requiredDocs: [],
+        uploadedDocs: [],
+        dynamicQuestions: [],
+        utms: {},
+      };
+
+      // Captura de UTMs e parâmetros de URL
+      function parseUrlParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        state.utms = {
+          utm_source: urlParams.get('utm_source') || 'direct',
+          utm_medium: urlParams.get('utm_medium') || 'landing_page',
+          utm_campaign: urlParams.get('utm_campaign') || 'paid_traffic_intake',
+          utm_content: urlParams.get('utm_content') || '',
+          utm_term: urlParams.get('utm_term') || '',
+          gclid: urlParams.get('gclid') || '',
+          fbclid: urlParams.get('fbclid') || '',
+        };
+      }
+      parseUrlParams();
+
+      // Máscara de Telefone com DDD: (DD) 9XXXX-XXXX
+      const phoneInput = document.getElementById('whatsapp_phone');
+      phoneInput.addEventListener('input', function(e) {
+        let v = e.target.value.replace(/\D/g, '');
+        if (v.length > 11) v = v.slice(0, 11);
+        if (v.length > 6) {
+          e.target.value = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+        } else if (v.length > 2) {
+          e.target.value = `(${v.slice(0,2)}) ${v.slice(2)}`;
+        } else if (v.length > 0) {
+          e.target.value = `(${v}`;
+        } else {
+          e.target.value = '';
+        }
+      });
+
+      // Máscara de CPF: 000.000.000-00
+      const cpfInput = document.getElementById('document_cpf');
+      cpfInput.addEventListener('input', function(e) {
+        let v = e.target.value.replace(/\D/g, '');
+        if (v.length > 11) v = v.slice(0, 11);
+        if (v.length > 9) {
+          e.target.value = `${v.slice(0,3)}.${v.slice(3,6)}.${v.slice(6,9)}-${v.slice(9)}`;
+        } else if (v.length > 6) {
+          e.target.value = `${v.slice(0,3)}.${v.slice(3,6)}.${v.slice(6)}`;
+        } else if (v.length > 3) {
+          e.target.value = `${v.slice(0,3)}.${v.slice(3)}`;
+        } else {
+          e.target.value = v;
+        }
+      });
+
+      // Seleção Interativa de Áreas Jurídicas
+      const areaCards = document.querySelectorAll('.area-card-radio');
+      areaCards.forEach(card => {
+        card.addEventListener('click', () => {
+          areaCards.forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          const radio = card.querySelector('input[type="radio"]');
+          if (radio) radio.checked = true;
+          state.selectedArea = card.getAttribute('data-area');
+        });
+      });
+
+      // Transição de Passos
+      function goToStep(step) {
+        document.getElementById('step-1-card').classList.add('hidden');
+        document.getElementById('step-2-card').classList.add('hidden');
+        document.getElementById('step-3-card').classList.add('hidden');
+
+        const s1 = document.getElementById('stepper-step-1');
+        const s2 = document.getElementById('stepper-step-2');
+        const s3 = document.getElementById('stepper-step-3');
+
+        if (step === 1) {
+          document.getElementById('step-1-card').classList.remove('hidden');
+          s1.className = 'step-item active';
+          s2.className = 'step-item';
+          s3.className = 'step-item';
+        } else if (step === 2) {
+          document.getElementById('step-2-card').classList.remove('hidden');
+          s1.className = 'step-item completed';
+          s2.className = 'step-item active';
+          s3.className = 'step-item';
+          window.scrollTo({ top: 120, behavior: 'smooth' });
+        } else if (step === 3) {
+          document.getElementById('step-3-card').classList.remove('hidden');
+          s1.className = 'step-item completed';
+          s2.className = 'step-item completed';
+          s3.className = 'step-item active';
+          window.scrollTo({ top: 120, behavior: 'smooth' });
+        }
+      }
+
+      // ==============================================================
+      // SUBMISSÃO DA ETAPA 1
+      // ==============================================================
+      const formStep1 = document.getElementById('step-1-form');
+      const btnStep1 = document.getElementById('btn-submit-step-1');
+      const btnStep1Text = document.getElementById('btn-step-1-text');
+
+      formStep1.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        btnStep1.disabled = true;
+        btnStep1Text.innerHTML = '<span class="spinner"></span> Carregando triagem...';
+
+        const payload = {
+          full_name: document.getElementById('full_name').value.trim(),
+          whatsapp_phone: document.getElementById('whatsapp_phone').value.trim(),
+          service_interest_area: state.selectedArea,
+          lgpd_consent: document.getElementById('lgpd_consent').checked,
+          tenant_slug: 'cardoso-adv',
+          ...state.utms
+        };
+
+        try {
+          const res = await fetch('/api/v1/public/intake/start', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json();
+          if (!res.ok) {
+            throw new Error(data.detail || 'Erro ao iniciar atendimento.');
+          }
+
+          state.leadId = data.lead_id;
+          state.opportunityId = data.opportunity_id;
+          state.protocolNumber = data.protocol_number;
+          state.requiredDocs = data.required_documents || [];
+          state.dynamicQuestions = data.dynamic_questions || [];
+
+          // Renderizar Etapa 2
+          document.getElementById('step-2-area-badge').textContent = `Direito ${data.legal_area}`;
+          renderDynamicQuestions(state.dynamicQuestions);
+          renderChecklist(state.requiredDocs);
+
+          goToStep(2);
+        } catch (err) {
+          alert(`Atenção: ${err.message}`);
+        } finally {
+          btnStep1.disabled = false;
+          btnStep1Text.textContent = 'Iniciar Atendimento Especializado';
+        }
+      });
+
+      // Renderizar Perguntas Dinâmicas da IA
+      function renderDynamicQuestions(questions) {
+        const container = document.getElementById('dynamic-questions-container');
+        container.innerHTML = '';
+
+        questions.forEach((q, idx) => {
+          const wrap = document.createElement('div');
+          wrap.className = 'form-group';
+
+          const label = document.createElement('label');
+          label.className = 'form-label';
+          label.setAttribute('for', `q_${q.id}`);
+          label.innerHTML = `${idx + 1}. ${q.label} ${q.required ? '<span class="required">*</span>' : ''}`;
+          wrap.appendChild(label);
+
+          if (q.type === 'select') {
+            const select = document.createElement('select');
+            select.className = 'form-select';
+            select.id = `q_${q.id}`;
+            select.name = q.id;
+            if (q.required) select.required = true;
+
+            const optDefault = document.createElement('option');
+            optDefault.value = '';
+            optDefault.textContent = 'Selecione uma opção...';
+            select.appendChild(optDefault);
+
+            (q.options || []).forEach(opt => {
+              const o = document.createElement('option');
+              o.value = opt;
+              o.textContent = opt;
+              select.appendChild(o);
+            });
+            wrap.appendChild(select);
+          } else if (q.type === 'radio') {
+            const radioWrap = document.createElement('div');
+            radioWrap.style.display = 'grid';
+            radioWrap.style.gap = '8px';
+            radioWrap.style.marginTop = '6px';
+
+            (q.options || []).forEach((opt, oIdx) => {
+              const rLabel = document.createElement('label');
+              rLabel.style.display = 'flex';
+              rLabel.style.alignItems = 'center';
+              rLabel.style.gap = '8px';
+              rLabel.style.fontSize = '0.875rem';
+              rLabel.style.color = 'var(--slate-800)';
+              rLabel.style.cursor = 'pointer';
+
+              const rInput = document.createElement('input');
+              rInput.type = 'radio';
+              rInput.name = q.id;
+              rInput.value = opt;
+              if (q.required && oIdx === 0) rInput.checked = true;
+              rInput.style.accentColor = 'var(--blue-royal)';
+
+              rLabel.appendChild(rInput);
+              rLabel.appendChild(document.createTextNode(opt));
+              radioWrap.appendChild(rLabel);
+            });
+            wrap.appendChild(radioWrap);
+          } else if (q.type === 'textarea') {
+            const textarea = document.createElement('textarea');
+            textarea.className = 'form-textarea';
+            textarea.id = `q_${q.id}`;
+            textarea.name = q.id;
+            textarea.placeholder = q.placeholder || '';
+            if (q.required) textarea.required = true;
+            wrap.appendChild(textarea);
+          } else {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'form-input';
+            input.id = `q_${q.id}`;
+            input.name = q.id;
+            input.placeholder = q.placeholder || '';
+            if (q.required) input.required = true;
+            wrap.appendChild(input);
+          }
+
+          container.appendChild(wrap);
+        });
+      }
+
+      // Renderizar Checklist de Documentos com Feedback da IA
+      function renderChecklist(requiredList) {
+        const listUi = document.getElementById('checklist-ui');
+        listUi.innerHTML = '';
+
+        requiredList.forEach(docName => {
+          const uploaded = state.uploadedDocs.find(u => {
+            const cleanU = (u.document_type || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+            const cleanD = docName.toLowerCase().replace(/[^a-z0-9]/g, '');
+            return cleanU.includes(cleanD) || cleanD.includes(cleanU);
+          });
+
+          const isUploaded = Boolean(uploaded);
+
+          const li = document.createElement('li');
+          li.className = `doc-item ${isUploaded ? 'received' : 'pending'}`;
+          li.innerHTML = `
+            <div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span>${isUploaded ? '✓' : '○'}</span>
+                <strong>${docName}</strong>
+              </div>
+              ${isUploaded && uploaded.sha256_hash ? `
+                <div style="font-size: 0.72rem; color: #047857; margin-top: 3px; font-family: monospace;">
+                  SHA-256: ${uploaded.sha256_hash.slice(0, 16)}... • Analisado e verificado por IA
+                </div>
+              ` : ''}
+            </div>
+            <span class="doc-status-badge">${isUploaded ? 'Verificado no Cofre (100%)' : 'Pendente de Envio'}</span>
+          `;
+          listUi.appendChild(li);
+        });
+      }
+
+      function showOcrNotification(msg) {
+        const box = document.getElementById('ocr-notification-box');
+        const text = document.getElementById('ocr-notification-text');
+        if (box && text) {
+          text.textContent = msg;
+          box.style.display = 'flex';
+        }
+      }
+
+      function showContractReadyBanner(signerUrl) {
+        const banner = document.getElementById('contract-ready-banner');
+        const btn = document.getElementById('btn-quick-sign');
+        if (banner) {
+          banner.style.display = 'block';
+        }
+        if (btn && signerUrl) {
+          btn.href = signerUrl;
+        }
+      }
+
+      // Componente de Upload e Drag & Drop
+      const dropZone = document.getElementById('drop-zone');
+      const fileInput = document.getElementById('file-input');
+      const analyzingIndicator = document.getElementById('ai-analyzing-indicator');
+      const analyzingText = document.getElementById('ai-analyzing-text');
+
+      dropZone.addEventListener('click', () => fileInput.click());
+      dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('dragover');
+      });
+      dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+      dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        if (e.dataTransfer.files && e.dataTransfer.files.length) {
+          uploadFiles(e.dataTransfer.files);
+        }
+      });
+      fileInput.addEventListener('change', (e) => {
+        if (e.target.files && e.target.files.length) {
+          uploadFiles(e.target.files);
+        }
+      });
+
+      async function uploadFiles(files) {
+        if (analyzingIndicator) {
+          analyzingIndicator.style.display = 'flex';
+        }
+
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          if (analyzingText) {
+            analyzingText.textContent = `IA analisando "${file.name}" com Gemini Vision + OCR...`;
+          }
+
+          const reader = new FileReader();
+          await new Promise((resolve) => {
+            reader.onload = async function(event) {
+              const base64Data = event.target.result.split(',')[1];
+              try {
+                const res = await fetch(`/api/v1/public/intake/${state.leadId}/documents`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    document_type: 'DOCUMENTO_GERAL',
+                    original_filename: file.name,
+                    file_base64: base64Data,
+                    mime_type: file.type || 'application/pdf',
+                    auto_close_contract: true
+                  })
+                });
+
+                if (res.ok) {
+                  const data = await res.json();
+                  const classifiedType = data.classification ? data.classification.document_type : file.name.split('.')[0];
+
+                  state.uploadedDocs.push({
+                    document_type: classifiedType,
+                    sha256_hash: data.sha256_hash,
+                    classification: data.classification
+                  });
+
+                  // Extração OCR de CPF: atualiza input imediatamente caso esteja vazio
+                  if (data.classification && data.classification.extracted_fields && data.classification.extracted_fields.cpfCnpj) {
+                    const extractedCpf = data.classification.extracted_fields.cpfCnpj;
+                    const cpfEl = document.getElementById('document_cpf');
+                    if (cpfEl && (!cpfEl.value || cpfEl.value.trim() === '')) {
+                      cpfEl.value = extractedCpf;
+                      showOcrNotification(`✓ CPF identificado com sucesso no documento pelo OCR (${extractedCpf}) e preenchido.`);
+                    }
+                  }
+
+                  // Contrato gerado automaticamente pela IA ao completar os documentos
+                  if (data.contract && data.contract.signer_url) {
+                    state.contractData = data.contract;
+                    showContractReadyBanner(data.contract.signer_url);
+                  }
+
+                  renderChecklist(state.requiredDocs);
+                }
+              } catch (err) {
+                console.error('Erro no upload e análise:', err);
+              } finally {
+                resolve();
+              }
+            };
+            reader.readAsDataURL(file);
+          });
+        }
+
+        if (analyzingIndicator) {
+          analyzingIndicator.style.display = 'none';
+        }
+      }
+
+      // Botão "Prefiro enviar documentos pelo WhatsApp agora"
+      document.getElementById('btn-skip-docs').addEventListener('click', function() {
+        document.getElementById('step-2-form').dispatchEvent(new Event('submit'));
+      });
+
+      // ==============================================================
+      // SUBMISSÃO DA ETAPA 2 (TRIAGEM IA & FINALIZAÇÃO)
+      // ==============================================================
+      const formStep2 = document.getElementById('step-2-form');
+      const btnStep2 = document.getElementById('btn-submit-step-2');
+      const btnStep2Text = document.getElementById('btn-step-2-text');
+
+      formStep2.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        btnStep2.disabled = true;
+        btnStep2Text.innerHTML = '<span class="spinner"></span> Finalizando triagem e gerando contrato...';
+
+        const collectedAnswers = {};
+        state.dynamicQuestions.forEach(q => {
+          if (q.type === 'radio') {
+            const checked = document.querySelector(`input[name="${q.id}"]:checked`);
+            if (checked) collectedAnswers[q.id] = checked.value;
+          } else {
+            const el = document.getElementById(`q_${q.id}`);
+            if (el) collectedAnswers[q.id] = el.value;
+          }
+        });
+
+        const payload = {
+          ai_collected_answers: collectedAnswers,
+          case_narrative: document.getElementById('case_narrative').value.trim(),
+          document_cpf_cnpj: document.getElementById('document_cpf').value.trim(),
+          urgency_liminar: document.getElementById('urgency_liminar').checked,
+        };
+
+        try {
+          // 1. Concluir Triagem e Disparar WhatsApp
+          const resComplete = await fetch(`/api/v1/public/intake/${state.leadId}/complete`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const completeData = await resComplete.json();
+          if (!resComplete.ok) {
+            throw new Error(completeData.detail || 'Erro ao concluir triagem.');
+          }
+
+          // 2. Gerar Minuta e Envelope ZapSign (se não gerado previamente pela IA durante o upload)
+          let contractData = state.contractData;
+          if (!contractData || !contractData.signer_url) {
+            const resContract = await fetch(`/api/v1/public/intake/${state.leadId}/contract`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' }
+            });
+            contractData = await resContract.json();
+            state.contractData = contractData;
+          }
+
+          // 3. Atualizar UI da Etapa 3
+          document.getElementById('confirmation-protocol').textContent = state.protocolNumber || `LAW-2026-${state.leadId.slice(-6).toUpperCase()}`;
+          document.getElementById('summary-lawyer-name').textContent = completeData.assigned_lawyer_name || 'Dr. Fabricio Cardoso Gomes';
+          document.getElementById('summary-lawyer-oab').textContent = completeData.assigned_lawyer_oab || 'OAB/GO 41.209';
+          document.getElementById('summary-legal-area').textContent = `Direito ${state.selectedArea}`;
+          document.getElementById('summary-priority').textContent = `Prioridade ${completeData.priority} • Score ${completeData.qualification_score}/100`;
+
+          if (contractData && contractData.signer_url) {
+            document.getElementById('btn-zapsign-link').href = contractData.signer_url;
+          }
+
+          goToStep(3);
+        } catch (err) {
+          alert(`Atenção: ${err.message}`);
+        } finally {
+          btnStep2.disabled = false;
+          btnStep2Text.textContent = 'Finalizar Triagem e Gerar Atendimento';
+        }
+      });
+
+    })();
+  </script>
+</body>
+</html>
