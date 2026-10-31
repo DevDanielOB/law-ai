@@ -48,3 +48,6 @@ Os agentes abaixo operam dentro da plataforma atendendo aos escritórios cliente
 1. **Fonte Única de Verdade para Contratos de Dados:** Todos os modelos de domínio, estados de tarefas e interfaces de conectores são centralizados e tipados.
 2. **Isolamento de Escopo:** Ferramentas de desenvolvimento do ambiente (terminal, edição de código) nunca são expostas aos agentes operacionais que conversam com clientes dos escritórios.
 3. **Verificação Obrigatória por Testes:** Nenhuma implementação dos Agentes 4 a 9 é aceita pelo Agente 1 sem validação automatizada executada pelo Agente 10.
+
+## Token-efficient context and skill synchronization
+Start with `SKILL.md`, then read only the applicable AGENTS.md section and relevant files. For each PR, update affected `SKILL.md` files in the same change when contracts, workflows, architecture, stack, paths, compliance gates or commands change; otherwise include “Skills reviewed; no update needed” in the PR description. Validate the actual runtime against package.json and source before relying on historical README/agent descriptions.
